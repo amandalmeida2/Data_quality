@@ -43,3 +43,6 @@ Este projeto contém um módulo Python para análise da qualidade de dados, seme
 ```
     
 O código acima executará as análises e imprimirá um relatório detalhado sobre a qualidade dos dados.
+
+Para ver o historico de commits
+<a target="_blank" href="https://github.com/amandalmeida2/Data_quality/blob/main/Historico%20de%20commits.png" >Clique aqui</a> 
