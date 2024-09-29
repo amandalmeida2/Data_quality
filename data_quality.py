@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
+import numpy as np
 class Data_quality:
 
     def __init__(self,df) -> None:
@@ -41,11 +42,31 @@ class Data_quality:
             plt.xticks(rotation=45)
             plt.show()
 
+    def plotar_numericas(self):
+        colunas_numericas = self.df.select_dtypes(include = np.number ).columns
+        for coluna in colunas_numericas:
+            plt.figure(figsize=(4, 2))
+            sn.histplot(self.df[coluna], kde=True)
+            plt.title(f'Distribuição da coluna numérica: {coluna}')
+            plt.show()
+
+    def plot_dispersao(self):
+   
+        colunas_numericas = self.df.select_dtypes(include=['float64', 'int64']).columns
+        if len(colunas_numericas) > 1:
+            sn.pairplot(self.df[colunas_numericas])
+            plt.title('Gráficos de dispersão entre colunas numéricas')
+            plt.show()
+        else:
+            print("Não há pares suficientes de variáveis numéricas para gerar gráficos de dispersão.")
+
+        
     def gerar_relatorio(self):
         self.nulos()
         self.unicos()
         self.contagem_categorica()
         self.contagem_numericas()
         self.plotar_categoricas()
-        
-
+        self.plotar_numericas()
+        self.plot_dispersao()    
+   
