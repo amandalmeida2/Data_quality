@@ -62,7 +62,7 @@ class Data_quality:
             print("Não há pares suficientes de variáveis numéricas para gerar gráficos de dispersão.")
     
     def colunas_duplicadas(self):
-        print(f"------------------------------\nColunas duplicadas")
+        print(f"------------------------------\nColunas duplicadas:")
 
         duplicadas = self.df.T.duplicated()
         if duplicadas.any():
@@ -72,6 +72,18 @@ class Data_quality:
             print("\n")
         else:
             print("Não há colunas duplicadas para este dataset")
+    
+    def linhas_duplicadas(self):
+        print(f"------------------------------\nLinhas duplicadas:")
+        duplicadas = self.df.duplicated()
+        total_duplicadas = duplicadas.sum()
+        print(f"O total de linhas duplicadas é: {total_duplicadas}")
+        if total_duplicadas >1:
+            print(self.df[duplicadas])
+            print("\n")
+        else:
+            print("Não há linhas duplicadas para este dataset.")
+            print("\n")
 
         
     def gerar_relatorio(self):
@@ -82,5 +94,6 @@ class Data_quality:
         self.plotar_categoricas()
         self.plotar_numericas()
         self.plot_dispersao()
-        self.colunas_duplicadas()    
+        self.colunas_duplicadas()  
+        self.linhas_duplicadas()  
    
