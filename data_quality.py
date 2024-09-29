@@ -51,6 +51,7 @@ class Data_quality:
             plt.show()
 
     def plot_dispersao(self):
+        print("Gráficos de dispersão entre colunas numéricas")
    
         colunas_numericas = self.df.select_dtypes(include=['float64', 'int64']).columns
         if len(colunas_numericas) > 1:
@@ -59,6 +60,18 @@ class Data_quality:
             plt.show()
         else:
             print("Não há pares suficientes de variáveis numéricas para gerar gráficos de dispersão.")
+    
+    def colunas_duplicadas(self):
+        print(f"------------------------------\nColunas duplicadas")
+
+        duplicadas = self.df.T.duplicated()
+        if duplicadas.any():
+
+            print("Colunas duplicadas: ")
+            print(self.df.columns[duplicadas])
+            print("\n")
+        else:
+            print("Não há colunas duplicadas para este dataset")
 
         
     def gerar_relatorio(self):
@@ -68,5 +81,6 @@ class Data_quality:
         self.contagem_numericas()
         self.plotar_categoricas()
         self.plotar_numericas()
-        self.plot_dispersao()    
+        self.plot_dispersao()
+        self.colunas_duplicadas()    
    
